@@ -1,6 +1,8 @@
 import {Directive,ElementRef,Input,OnInit} from '@angular/core';
+
 declare var google:any;
 declare var googleLoaded:any;
+
 @Directive({
   selector: '[GoogleChart]',
   properties: [
@@ -24,16 +26,29 @@ export class GoogleChart implements OnInit {
      }
     setTimeout(() =>this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element),1000);
   }
-  drawGraph (chartOptions,chartType,chartData,ele) {
+  drawGraph (chartOptions : any,chartType : any,chartData : any,ele : any) {
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-        var wrapper;
+        var wrapper : any;
        wrapper = new google.visualization.ChartWrapper({
              chartType: chartType,
              dataTable:chartData ,
              options:chartOptions || {},
              containerId: ele.id
            });
+
+          if(chartType == 'GeoChart' || chartType == 'LineChart') {
+              let dataTable:any = wrapper.getDataTable();
+
+              let formatter : any = new google.visualization.NumberFormat({
+                  suffix : " €"
+              });
+
+              formatter.format(dataTable, 1);
+              
+              wrapper.setDataTable(dataTable);
+          }
+
       wrapper.draw();
     }
   }
