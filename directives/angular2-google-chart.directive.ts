@@ -24,7 +24,7 @@ export class GoogleChart implements OnInit {
       googleLoaded = true;
     google.charts.load('current', {'packages':['corechart', 'gauge']});
      }
-    setTimeout(() =>this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element),1000);
+    setTimeout(() =>this.drawGraph(this.chartOptions,this.chartType,this.chartData,this._element));
   }
   drawGraph (chartOptions : any,chartType : any,chartData : any,ele : any) {
       google.charts.setOnLoadCallback(drawChart);
