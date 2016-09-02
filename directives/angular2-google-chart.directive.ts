@@ -4,12 +4,7 @@ declare var google:any;
 declare var googleLoaded:any;
 
 @Directive({
-  selector: '[GoogleChart]',
-  properties: [
-      'chartType',
-      'chartOptions',
-      'chartData'
-    ]
+  selector: '[GoogleChart]'
 })
 export class GoogleChart implements OnInit {
   public _element:any;
