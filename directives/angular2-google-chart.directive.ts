@@ -40,7 +40,7 @@ export class GoogleChart implements OnInit {
               });
 
               formatter.format(dataTable, 1);
-              
+               
               wrapper.setDataTable(dataTable);
           }
 
